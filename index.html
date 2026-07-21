@@ -1,0 +1,938 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sua Primeira Naia · o agente de IA que atende, vende e cria pra voce, instalado no seu servidor</title>
+<meta name="description" content="Instale a sua Primeira Naia hoje: um agente de IA ja treinado que atende e vende no WhatsApp e Instagram, faz sites, cria imagens, edita videos e opera o seu CRM. Copia e cola o instalador e o agente nasce pronto. R$ 297 a vista.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ===== base (bio.denderson.ai) - paleta MIDNIGHT ACID ===== */
+:root{
+  --bg0:#0b0b10;--bg1:#12121a;--bg2:#181822;--surface:#1e1e2b;--ink:#0b0b10;
+  --text:#f2f2ea;--mute:#a3a39a;--faint:#6f6f68;
+  --acid:#d4ff4a;--acid-soft:#e4ff85;--magenta:#ff0000;--magenta-soft:#ff6b6b;
+  --coral:#ff7a45;
+  --line:rgba(242,242,234,.12);--line-soft:rgba(242,242,234,.07);
+  --font-display:"Cormorant Garamond",Georgia,serif;
+  --font-body:"DM Sans",-apple-system,system-ui,sans-serif;
+  --font-mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  --container:1360px;--ease-out:cubic-bezier(.22,1,.36,1);--ease-io:cubic-bezier(.65,0,.35,1);
+}
+*,*::before,*::after{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{margin:0;background:var(--bg0);color:var(--text);font-family:var(--font-body);font-weight:400;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:hidden;position:relative;}
+img{max-width:100%;height:auto;display:block;}
+a{color:inherit;text-decoration:none;}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;}
+h1,h2,h3,h4{margin:0;font-family:var(--font-display);font-weight:600;line-height:1.06;letter-spacing:-.01em;}
+.serif{font-style:italic;color:var(--acid);}
+.section-dark .serif,#hero .serif{color:var(--acid-soft);}
+.dot{color:var(--acid);}
+p{margin:0;}
+ul,ol{margin:0;padding:0;list-style:none;}
+figure{margin:0;}
+::selection{background:var(--acid);color:var(--ink);}
+.skip{position:absolute;top:-60px;left:16px;z-index:600;background:var(--acid);color:var(--ink);padding:10px 16px;border-radius:8px;font:500 13px var(--font-mono);transition:top .3s var(--ease-out);}
+.skip:focus{top:12px;}
+.cursor,.cursor-ring{position:fixed;top:0;left:0;border-radius:50%;pointer-events:none;z-index:700;transform:translate(-50%,-50%);opacity:0;}
+.cursor{width:9px;height:9px;background:var(--acid);}
+.cursor-ring{width:34px;height:34px;border:1.5px solid var(--acid);opacity:0;transition:width .3s var(--ease-out),height .3s var(--ease-out),border-color .3s,opacity .3s;}
+.cursor.on,.cursor-ring.on{opacity:.85;}
+.cursor-ring.on{opacity:.45;}
+body.link-hover .cursor-ring{width:56px;height:56px;opacity:.9;border-color:var(--magenta);}
+@media (hover:none),(pointer:coarse){.cursor,.cursor-ring{display:none;}}
+.container{width:min(var(--container),100% - 48px);margin-inline:auto;}
+section .container{position:relative;z-index:1;}
+.eyebrow{font:500 11px/1.5 var(--font-mono);letter-spacing:.22em;text-transform:uppercase;color:var(--mute);}
+.lead{font-size:17px;color:var(--mute);}
+.lead.muted{color:var(--mute);}
+.lead b{color:var(--text);}
+.biglead{font-size:18.5px;line-height:1.6;color:var(--mute);}
+.biglead b{color:var(--text);}
+.display{font-size:clamp(32px,4vw,60px);}
+h3.sub{font-size:clamp(24px,2.6vw,36px);}
+.btn{display:inline-flex;align-items:center;gap:10px;font:700 15px/1 var(--font-body);letter-spacing:.01em;padding:18px 30px;border-radius:100px;border:1px solid transparent;transition:transform .35s var(--ease-out),background-color .3s,color .3s,border-color .3s,box-shadow .35s var(--ease-out);will-change:transform;}
+.btn .arrow{transition:transform .35s var(--ease-out);display:inline-block;}
+.btn:hover .arrow{transform:translate(3px,-3px);}
+.btn-primary{background:var(--acid);color:var(--ink);box-shadow:0 14px 34px -14px rgba(212,255,74,.45);}
+.btn-primary:hover{background:var(--magenta);color:var(--text);box-shadow:0 18px 40px -16px rgba(255,0,0,.5);}
+.btn-coral{background:var(--ink);color:var(--acid);}
+.btn-coral:hover{background:var(--bg2);color:var(--acid-soft);}
+.btn-ghost{border-color:var(--text);color:var(--text);background:transparent;}
+.btn-ghost:hover{background:var(--text);color:var(--ink);}
+.btn-ghost-light{border-color:var(--text);color:var(--text);background:transparent;}
+.btn-ghost-light:hover{background:var(--text);color:var(--ink);}
+.btn-sm{padding:13px 22px;font-size:13px;}
+.actions{display:flex;flex-wrap:wrap;gap:14px;}
+.pre{opacity:0 !important;transform:translateY(24px) !important;}
+.reveal,.stagger>*{transition:opacity .8s var(--ease-out),transform .8s var(--ease-out);}
+.is-in{opacity:1 !important;transform:none !important;}
+.stagger.is-in>*:nth-child(1){transition-delay:.04s;}
+.stagger.is-in>*:nth-child(2){transition-delay:.12s;}
+.stagger.is-in>*:nth-child(3){transition-delay:.2s;}
+.stagger.is-in>*:nth-child(4){transition-delay:.28s;}
+.stagger.is-in>*:nth-child(5){transition-delay:.36s;}
+.stagger.is-in>*:nth-child(6){transition-delay:.44s;}
+.stagger.is-in>*:nth-child(7){transition-delay:.52s;}
+.stagger.is-in>*:nth-child(8){transition-delay:.6s;}
+.reveal.d2{transition-delay:.12s;}
+.reveal.d3{transition-delay:.22s;}
+.reveal.d4{transition-delay:.32s;}
+.reveal.d5{transition-delay:.42s;}
+.fx-canvas{position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none;z-index:0;}
+.footer{background:#08080c;color:var(--text);padding:90px 0 32px;overflow:hidden;}
+.megaword{font:600 clamp(90px,23vw,400px)/0.78 var(--font-display);letter-spacing:-.03em;margin:0 0 -0.16em -0.04em;color:var(--text);pointer-events:none;}
+.megaword .dot{color:var(--acid);}
+.footrow{display:flex;flex-wrap:wrap;gap:18px 40px;justify-content:space-between;border-top:1px solid var(--line);padding-top:26px;font:400 12px var(--font-mono);letter-spacing:.06em;color:var(--mute);margin-top:64px;}
+.live{display:inline-flex;align-items:center;gap:9px;}
+.pulse{width:7px;height:7px;border-radius:50%;background:var(--acid);display:inline-block;animation:pulse 1.8s var(--ease-io) infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.35;transform:scale(.7);}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto;}.pulse{animation:none;}.cursor,.cursor-ring{display:none;}*,*::before,*::after{transition-duration:.01ms !important;animation-duration:.01ms !important;animation-iteration-count:1 !important;}}
+
+/* ===== sections (bio.denderson.ai) ===== */
+section{padding:clamp(64px,7vw,96px) 0;position:relative;overflow:hidden;}
+.section-dark{background:var(--bg2);}
+.section-bone{background:var(--bg1);}
+.row-sec{padding:clamp(56px,6vw,80px) 0;}
+#hero{background:var(--bg0);min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;padding:0;}
+#bgCanvas{position:absolute;inset:0;width:100%;height:100%;display:block;z-index:0;}
+.hero-rail{position:absolute;top:50%;z-index:2;pointer-events:none;font:500 10px var(--font-mono);letter-spacing:.3em;text-transform:uppercase;color:rgba(242,242,234,.35);}
+.hero-rail span{display:block;writing-mode:vertical-rl;transform:translateY(-50%);}
+.hero-rail.left{left:16px;}
+.hero-rail.right{right:16px;}
+.hero-rail.right span{transform:translateY(-50%) rotate(180deg);}
+@media (max-width:1400px){.hero-rail{display:none;}}
+.hero-wrap{position:relative;z-index:2;flex:1;display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center;padding-top:120px;padding-bottom:56px;}
+.hero-title{font-size:clamp(44px,6.4vw,120px);line-height:1.02;margin:20px 0 22px;}
+.hero-copy .lead{max-width:520px;}
+.channels{display:flex;flex-wrap:wrap;gap:9px;margin-top:24px;}
+.chan{font:500 12px var(--font-mono);letter-spacing:.06em;padding:9px 15px;border-radius:100px;border:1px solid var(--line);color:var(--text);transition:border-color .3s,transform .3s var(--ease-out),background-color .3s,color .3s;}
+.chan b{color:var(--acid);}
+.chan:hover{border-color:var(--acid);transform:translateY(-3px);background:rgba(212,255,74,.1);color:var(--acid-soft);}
+.hero-actions{margin-top:30px;}
+.hero-collage{position:relative;min-height:420px;}
+.hc-main{width:78%;margin-left:auto;overflow:hidden;border:2px solid var(--acid);border-radius:26px;box-shadow:0 60px 110px -46px rgba(0,0,0,.85);transform:rotate(2deg);transition:transform .3s var(--ease-out);}
+.hc-main img{width:100%;height:100%;object-fit:cover;aspect-ratio:4/3;}
+.hc-cut{position:absolute;overflow:hidden;background:var(--bg1);transition:transform .3s var(--ease-out);}
+.hc-cut img{width:100%;height:100%;object-fit:cover;}
+.hc-cut-a{left:-2%;bottom:10%;width:38%;aspect-ratio:3/4;border:2px solid var(--text);border-radius:18px;transform:rotate(-5deg);box-shadow:0 40px 70px -30px rgba(0,0,0,.8);}
+.marquee{background:var(--acid);color:var(--ink);overflow:hidden;padding:16px 0;}
+.marquee-track{display:flex;white-space:nowrap;width:max-content;animation:marquee 24s linear infinite;}
+.marquee-track span{font:500 clamp(17px,2.2vw,28px) var(--font-display);font-style:italic;letter-spacing:.05em;padding-right:12vw;}
+@keyframes marquee{to{transform:translateX(-50%);}}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;}
+.plat-intro{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:end;margin-bottom:40px;}
+.bento{display:grid;grid-template-columns:repeat(12,1fr);gap:14px;}
+.bento .b1{grid-column:span 7;}
+.bento .b2{grid-column:span 5;}
+.bento .b3{grid-column:span 4;}
+.bento .b4{grid-column:span 8;}
+.bento .bfull{grid-column:span 12;}
+.bento .bfull h4{font-size:clamp(24px,2.4vw,34px);}
+.card{position:relative;background:var(--surface);border:1px solid var(--line-soft);border-radius:18px;padding:26px 24px 30px;transition:transform .5s var(--ease-out),box-shadow .5s var(--ease-out),border-color .4s,background-color .35s;}
+.card:hover{transform:translateY(-7px);box-shadow:0 40px 70px -40px rgba(0,0,0,.6);border-color:var(--acid);background:var(--acid);}
+.card:hover h4,.card:hover p{color:var(--ink);}
+.card:hover .ctag{color:rgba(11,11,16,.65);}
+.card:hover .cnum,.card:hover .arr{color:var(--ink);}
+.card .crow{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
+.card .cnum{font:500 12px var(--font-mono);color:var(--acid);letter-spacing:.18em;transition:color .3s;}
+.card .ctag{font:500 10px var(--font-mono);letter-spacing:.18em;text-transform:uppercase;color:var(--mute);transition:color .3s;}
+.card h4{font-size:23px;margin-bottom:10px;transition:color .3s;}
+.bento .b1 h4{font-size:clamp(26px,2.6vw,38px);}
+.card p{color:var(--mute);font-size:14.5px;transition:color .3s;}
+.card .arr{position:absolute;right:20px;top:22px;color:var(--acid);transition:transform .35s var(--ease-out),color .3s;}
+.card:hover .arr{transform:translate(3px,-3px);}
+.prow{display:grid;grid-template-columns:45fr 55fr;gap:56px;align-items:center;}
+.prow.rev{grid-template-columns:55fr 45fr;}
+.prow.rev .prow-txt{order:-1;}
+.prow-img{min-width:0;}
+.prow-txt .display{font-size:clamp(27px,3.2vw,48px);margin:14px 0 16px;}
+.imgframe{overflow:hidden;background:var(--bg2);transition:transform .3s var(--ease-out);}
+.imgframe img{width:100%;height:100%;object-fit:cover;aspect-ratio:3/2.2;}
+.frame-blob{border-radius:64% 36% 55% 45% / 42% 55% 45% 58%;box-shadow:0 50px 90px -44px rgba(0,0,0,.7);}
+.frame-rot{border-radius:22px;transform:rotate(-2deg);box-shadow:0 50px 90px -44px rgba(0,0,0,.7);}
+.frame-coral{border:2px solid var(--magenta);border-radius:22px;box-shadow:0 50px 90px -44px rgba(0,0,0,.8);}
+.app-stage{position:relative;display:flex;justify-content:center;padding:26px 0;}
+.app-back{position:absolute;top:0;right:6%;width:66%;height:90%;background:var(--magenta);border-radius:60% 40% 55% 45% / 50% 55% 45% 50%;}
+.app-frame{position:relative;transition:transform .3s var(--ease-out);}
+.app-frame img{width:100%;max-width:280px;height:auto;border-radius:20px;box-shadow:0 50px 80px -34px rgba(0,0,0,.7);}
+.vlist{margin-top:18px;}
+.vlist li{position:relative;padding:8px 0 8px 26px;color:var(--mute);border-bottom:1px dashed var(--line-soft);font-size:15px;}
+.vlist li:last-child{border-bottom:0;}
+.vlist .mk{position:absolute;left:0;top:8px;color:var(--acid);font-weight:700;}
+.vlist .mk.x{color:var(--faint);}
+.vlist li b{color:var(--text);}
+.badge-row{display:flex;flex-wrap:wrap;gap:9px;margin-top:20px;}
+.badge{font:500 11.5px var(--font-mono);letter-spacing:.05em;padding:9px 16px;border-radius:100px;border:1px solid var(--line);background:var(--surface);color:var(--text);transition:border-color .3s,transform .3s var(--ease-out),color .3s;}
+.badge:hover{border-color:var(--acid);transform:translateY(-3px);color:var(--acid-soft);}
+.vs{display:grid;grid-template-columns:1fr auto 1fr;gap:0;align-items:stretch;border:1px solid var(--line);}
+.vs-col{padding:28px 26px;}
+.vs-col.bad{background:var(--surface);}
+.vs-col.good{background:var(--magenta);color:var(--text);}
+.vs-mid{align-self:stretch;display:flex;align-items:center;padding:0 18px;font:600 40px var(--font-display);font-style:italic;color:var(--acid);border-left:1px solid var(--line);border-right:1px solid var(--line);background:var(--bg1);}
+.vlabel{font:500 10.5px var(--font-mono);letter-spacing:.2em;text-transform:uppercase;color:var(--mute);}
+.vs-col.good .vlabel{color:rgba(242,242,234,.8);}
+.vs-col h4{font-size:20px;margin:10px 0 12px;}
+.vs-price{font:600 clamp(38px,4.4vw,72px)/1 var(--font-display);margin-bottom:16px;font-variant-numeric:tabular-nums;}
+.vs-price small{font-size:16px;color:var(--faint);font-family:var(--font-body);font-weight:400;}
+.vs-breakdown{font:400 13px/1.5 var(--font-body);color:var(--mute);margin:-6px 0 16px;}
+.vs-col.good .vs-breakdown{color:rgba(242,242,234,.85);}
+.vs-col.good .vs-price small{color:rgba(242,242,234,.75);}
+.vs-col.good .vlist li{color:rgba(242,242,234,.94);border-bottom-color:rgba(242,242,234,.22);}
+.vs-col.good .vlist li b{color:var(--text);}
+.save-strip{margin-top:20px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;border:1px solid var(--line);background:var(--surface);padding:18px 24px;}
+.save-strip b{font:600 clamp(17px,1.9vw,22px) var(--font-display);font-style:italic;}
+.perfis-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+.mstep{background:var(--surface);border:1px solid var(--line-soft);border-radius:18px;padding:28px 26px;transition:transform .5s var(--ease-out),box-shadow .5s var(--ease-out),border-color .4s;}
+.mstep:hover{transform:translateY(-7px);box-shadow:0 40px 70px -40px rgba(0,0,0,.6);border-color:var(--acid);}
+.mstep .mhead{display:flex;align-items:baseline;gap:14px;margin-bottom:12px;}
+.mstep .mn{font:600 italic 32px var(--font-display);color:var(--acid);}
+.mstep h4{font-size:24px;}
+.mstep>p{color:var(--mute);font-size:14.5px;margin-bottom:16px;}
+.mstep ul li{padding:8px 0 8px 22px;position:relative;border-bottom:1px dashed var(--line-soft);font-size:14px;color:var(--mute);}
+.mstep ul li:last-child{border-bottom:0;}
+.mstep ul li::before{content:"";position:absolute;left:2px;top:15px;width:8px;height:8px;background:var(--acid);border-radius:2px;transform:rotate(45deg);}
+.team-naia{background:var(--surface);border:1px solid var(--line-soft);border-radius:22px;padding:30px;display:flex;gap:26px;align-items:center;}
+.team-naia img{width:110px;height:110px;object-fit:cover;flex:none;border-radius:58% 42% 50% 50% / 48% 52% 48% 52%;border:3px solid var(--acid);}
+.team-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;}
+.team-grid.trio{grid-template-columns:repeat(3,1fr);gap:16px;}
+.team-grid.trio .team-card{padding:26px 18px 24px;}
+.team-grid.trio .team-card img{width:104px;height:104px;}
+.tc-tag{display:block;font:500 10px var(--font-mono);letter-spacing:.18em;text-transform:uppercase;color:var(--acid);margin-bottom:14px;}
+.team-card:hover .tc-tag{color:var(--acid-soft);}
+.team-grid.trio .team-card b{font-size:18px;margin-top:2px;}
+.team-grid.trio .team-card span{font-size:12px;line-height:1.45;display:block;margin-top:4px;}
+.team-card{background:var(--surface);border:1px solid var(--line-soft);border-radius:18px;padding:20px 12px;text-align:center;transition:transform .5s var(--ease-out),border-color .4s;}
+.team-card:hover{transform:translateY(-8px);border-color:var(--acid);}
+.team-card img{width:76px;height:76px;border-radius:50%;object-fit:cover;margin:0 auto 12px;border:2px solid var(--acid);transition:transform .4s var(--ease-out);}
+.team-card:hover img{transform:scale(1.06);}
+.team-card b{display:block;font-size:14px;}
+.team-card span{font:400 10.5px var(--font-mono);color:var(--mute);}
+.team-plus{margin-top:14px;background:var(--surface);border:1px dashed var(--line-soft);border-radius:18px;padding:18px 24px;display:flex;align-items:center;gap:20px;flex-wrap:wrap;}
+.tp-num{font:600 clamp(30px,3.4vw,42px)/1 var(--font-display);color:var(--acid);flex:none;}
+.tp-txt{margin:0;font-size:14.5px;color:var(--mute);flex:1 1 260px;line-height:1.5;}
+.tp-txt b{color:var(--text);}
+.tp-chips{display:flex;flex-wrap:wrap;gap:7px;}
+.tp-chips span{font:500 10.5px var(--font-mono);letter-spacing:.06em;border:1px solid var(--line-soft);border-radius:999px;padding:6px 12px;color:var(--mute);}
+.team-naia{width:100%;text-align:left;}
+.pillstrip{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px;}
+.pillstrip .pill{font:500 11px var(--font-mono);letter-spacing:.02em;color:var(--mute);border:1px solid var(--line);border-radius:100px;padding:8px 14px;background:var(--surface);}
+.pillstrip .pill:nth-child(odd){transform:rotate(-1deg);}
+.pillstrip .pill:nth-child(even){transform:rotate(1deg);}
+.pillstrip .pill b{color:var(--acid);}
+.stage-coral,.stage-mustard{position:relative;padding:0 9% 9% 0;}
+.stage-coral::before,.stage-mustard::before{content:"";position:absolute;top:9%;right:0;width:84%;height:84%;border-radius:22px;}
+.stage-coral::before{background:var(--acid);}
+.stage-mustard::before{background:var(--magenta);}
+.nucleo-figure{position:relative;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--bg2);box-shadow:0 34px 60px -34px rgba(0,0,0,.6);transition:transform .3s var(--ease-out);}
+.nucleo-figure img{width:100%;height:100%;object-fit:cover;display:block;aspect-ratio:4/4.4;}
+.nucleo-figure .ntag{position:absolute;left:14px;bottom:14px;right:14px;font:400 11px/1.5 var(--font-mono);letter-spacing:.04em;color:var(--text);background:rgba(11,11,16,.82);padding:14px;border-radius:10px;text-shadow:0 1px 8px rgba(0,0,0,.7);}
+.nucleo-figure .ntag b{color:var(--acid-soft);}
+.role-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;border:1px solid var(--line);}
+.rolecard{padding:24px;background:transparent;border:1px solid var(--line);margin:-.5px;transition:background-color .35s,border-color .3s;}
+.rolecard:hover{background:var(--bg2);border-color:var(--acid);position:relative;z-index:2;}
+.rolecard .rhead{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px;}
+.rolecard .rfunc{font:600 12.5px var(--font-mono);letter-spacing:.16em;text-transform:uppercase;color:var(--faint);}
+.rolecard .rsave{font:500 12.5px var(--font-mono);color:var(--acid);border:1px solid var(--line);border-radius:100px;padding:4px 10px;white-space:nowrap;background:var(--surface);}
+.rvs{display:flex;align-items:stretch;border:1px solid var(--line);overflow:hidden;}
+.rvs .side{flex:1 1 0;min-width:0;padding:13px;}
+.rvs .side.human{background:var(--bg2);}
+.rvs .side.ai{background:var(--magenta);color:var(--text);}
+.rvs .side .slab{font:600 11.5px var(--font-mono);letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin-bottom:7px;}
+.rvs .side.ai .slab{color:rgba(242,242,234,.85);}
+.rvs .side .who{font:700 16.5px var(--font-body);color:var(--text);display:flex;align-items:center;gap:8px;}
+.rvs .side.ai .who{color:var(--text);}
+.rvs .side .who img{width:28px;height:28px;border-radius:50%;object-fit:cover;border:1px solid rgba(242,242,234,.5);flex-shrink:0;}
+.rvs .side .cost{font:600 26px/1 var(--font-display);margin-top:9px;}
+.rvs .side.human .cost{color:var(--faint);text-decoration:line-through;text-decoration-color:var(--magenta);}
+.rvs .side.ai .cost{color:var(--text);}
+.rvs .side .cost small{font-size:13px;font-weight:400;color:var(--faint);font-family:var(--font-body);}
+.rvs .side.ai .cost small{color:rgba(242,242,234,.7);}
+.rolecard .radv{margin:12px 0 0;font-size:16px;color:var(--mute);line-height:1.55;}
+.rolecard .radv b{color:var(--text);}
+.totalbar{margin-top:28px;background:#08080c;color:var(--text);padding:clamp(30px,4vw,52px) clamp(24px,4vw,48px);display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:20px;}
+.totalbar .tnum{font:600 clamp(34px,5vw,76px)/1 var(--font-display);font-variant-numeric:tabular-nums;white-space:nowrap;}
+.totalbar .tnum .strike{color:var(--faint);text-decoration:line-through;text-decoration-color:var(--magenta);}
+.totalbar .tnum .now{color:var(--acid);}
+.totalbar .tcap{font:400 11px var(--font-mono);color:var(--mute);letter-spacing:.03em;max-width:34ch;}
+.totalbar .tcap b{color:var(--text);}
+.perkrow{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:28px;}
+.perk{border-top:2px solid var(--acid);padding-top:13px;}
+.perk h4{font-size:18px;margin-bottom:7px;}
+.perk p{color:var(--mute);font-size:13px;line-height:1.5;}
+.offer{display:grid;grid-template-columns:1.05fr .95fr;background:var(--surface);border:1px solid var(--line);}
+.offer .left{padding:clamp(30px,3.6vw,48px);}
+.incl{margin-top:22px;display:grid;grid-template-columns:1fr 1fr;gap:0 24px;}
+.incl li{position:relative;padding:11px 0 11px 28px;border-bottom:1px dashed var(--line);color:var(--text);font-size:14.5px;}
+.incl .mk{position:absolute;left:2px;top:11px;color:var(--acid);font-weight:700;}
+.offer .right{position:relative;background:var(--acid);color:var(--ink);padding:clamp(32px,4vw,56px) clamp(26px,3vw,44px);display:flex;flex-direction:column;justify-content:center;overflow:hidden;}
+.stamp{position:absolute;top:-28px;right:-28px;width:140px;height:140px;border-radius:50%;border:2px dashed rgba(11,11,16,.5);display:flex;align-items:center;justify-content:center;font:400 50px var(--font-display);color:rgba(11,11,16,.75);animation:spin 14s linear infinite;}
+@keyframes spin{to{transform:rotate(372deg);}}
+.coord{font:500 10.5px var(--font-mono);letter-spacing:.18em;text-transform:uppercase;color:rgba(11,11,16,.7);}
+.pricelab{font:600 10.5px var(--font-mono);letter-spacing:.2em;text-transform:uppercase;color:rgba(11,11,16,.55);margin-bottom:4px;}
+.anchor-old{font:500 15px var(--font-mono);color:rgba(11,11,16,.55);text-decoration:line-through;text-decoration-color:rgba(11,11,16,.5);margin-bottom:2px;}
+.price{font:600 clamp(48px,5.4vw,80px)/1 var(--font-display);font-variant-numeric:tabular-nums;color:var(--ink);}
+.price small{font-size:17px;font-family:var(--font-body);font-weight:400;color:rgba(11,11,16,.7);}
+.price-sub{font:500 13px var(--font-mono);color:rgba(11,11,16,.72);margin:8px 0 20px;}
+.offer .right p{color:rgba(11,11,16,.8);}
+.offer .right .btn{align-self:stretch;}
+.offer-reassure{display:grid;gap:7px;margin-top:16px;}
+.offer-reassure li{position:relative;padding-left:22px;font:500 12.5px var(--font-mono);color:rgba(11,11,16,.78);}
+.offer-reassure li::before{content:"\2713";position:absolute;left:0;top:0;color:var(--ink);font-weight:700;}
+#agendar{background:var(--bg1);border-top:1px solid var(--line);overflow:hidden;}
+.finalcta{text-align:center;max-width:1050px;margin:0 auto;}
+.finalcta h2{font-size:clamp(40px,5.8vw,92px);margin:20px 0 18px;}
+.finalcta .lead{max-width:640px;margin:0 auto;color:var(--mute);}
+.finalcta .actions{justify-content:center;margin-top:30px;}
+.reassure{margin-top:28px;font:400 11.5px var(--font-mono);letter-spacing:.1em;color:var(--mute);}
+@media (max-width:1100px){.perkrow{grid-template-columns:repeat(2,1fr);}.incl{grid-template-columns:1fr;}.team-grid{grid-template-columns:repeat(3,1fr);}.team-grid.trio{grid-template-columns:repeat(3,1fr);}}
+@media (max-width:900px){.hero-wrap{grid-template-columns:1fr;gap:36px;padding-top:110px;}.hero-collage{min-height:0;padding-bottom:20px;}.duo,.plat-intro{grid-template-columns:1fr;gap:22px;}.bento .b1,.bento .b2,.bento .b3,.bento .b4{grid-column:span 12;}.prow,.prow.rev{grid-template-columns:1fr;gap:32px;}.prow.rev .prow-txt{order:0;}.vs{grid-template-columns:1fr;}.vs-mid{border:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:8px 0;justify-content:center;}.perfis-grid{grid-template-columns:1fr;}.team-naia{flex-direction:column;align-items:flex-start;}.role-grid{grid-template-columns:1fr;}.offer{grid-template-columns:1fr;}.totalbar .tnum{white-space:normal;}}
+@media (max-width:560px){.team-grid{grid-template-columns:repeat(2,1fr);}.team-grid.trio{grid-template-columns:1fr;}.perkrow{grid-template-columns:1fr;}.hero-title{font-size:clamp(38px,11vw,64px);}}
+
+/* ===== VSL topo (nova secao 1) ===== */
+#vsl-top{background:var(--bg0);padding:clamp(70px,9vw,120px) 0 clamp(48px,6vw,80px);text-align:center;}
+.vsl-inner{max-width:860px;margin-inline:auto;display:flex;flex-direction:column;align-items:center;}
+.vsl-eyebrow{margin-bottom:22px;}
+.vsl-title{font-size:clamp(34px,5.4vw,72px);line-height:1.04;margin:0 0 clamp(34px,4.5vw,54px);max-width:16ch;}
+.vsl-player{width:100%;display:flex;justify-content:center;}
+.vsl-player vturb-smartplayer{width:100%;max-width:400px;}
+.br-m{display:none;}
+@media (max-width:560px){.vsl-title{font-size:clamp(30px,9vw,44px);}}
+@media (max-width:640px){.vsl-title{font-size:22px;line-height:1.18;max-width:none;word-break:normal;overflow-wrap:break-word;}.br-m{display:inline;}}
+
+/* ===== delay de revelacao (VSL gate) ===== */
+.locked-content{display:none !important;}
+body.pn-unlocked .locked-content{display:block !important;}
+</style>
+</head>
+<body>
+<a class="skip" href="#instalar">Pular para o conteudo</a>
+<div class="cursor" id="cursor" aria-hidden="true"></div>
+<div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
+
+<main id="top">
+
+  <!-- 0 - VSL (topo) -->
+  <section id="vsl-top">
+    <div class="container">
+      <div class="vsl-inner">
+        <h1 class="display vsl-title reveal d2">Como ter uma IA que te economiza<br class="br-m"> <span class="serif">20 mil por mês</span> em serviços<span class="dot">.</span></h1>
+        <div class="vsl-player reveal d3">
+          <vturb-smartplayer id="vid-6a5eebc438aa74fbb31d1954" style="display: block; margin: 0 auto; width: 100%; max-width: 400px;"><div class="vturb-player-placeholder" style="position: relative; width: 100%; padding: 177.77777777777777% 0 0; z-index: 0; background-color: black;"></div></vturb-smartplayer>
+          <script type="text/javascript"> var s=document.createElement("script"); s.src="https://scripts.converteai.net/f982bf78-67ff-4837-8eb5-5f3f440a16f2/players/6a5eebc438aa74fbb31d1954/v4/player.js", s.async=!0,document.head.appendChild(s); </script>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== conteudo bloqueado ate o video atingir 9:21 (561s) ===== -->
+  <div class="locked-content">
+
+  <!-- I - HERO -->
+  <section id="hero">
+    <canvas id="bgCanvas" data-fx="net" aria-hidden="true"></canvas>
+    <div class="hero-rail left" aria-hidden="true"><span>Primeira Naia · Instalacao no seu servidor</span></div>
+    <div class="hero-rail right" aria-hidden="true"><span>Atende · Vende · Cria · 24/7</span></div>
+    <div class="hero-wrap container">
+      <div class="hero-copy">
+        <h1 class="display hero-title reveal d2">Instale hoje a sua <span class="serif">Primeira Naia</span>: o agente de IA que atende, vende e cria pra voce, no seu proprio servidor<span class="dot">.</span></h1>
+        <p class="lead reveal d3">Um agente ja treinado que atende e qualifica seus leads no WhatsApp e no Instagram, faz seus sites, cria suas imagens, edita seus videos e opera o seu CRM. Voce <b>copia e cola o instalador</b> e em minutos ele acorda dizendo bom dia, pronto pra trabalhar.</p>
+        <div class="channels reveal d4">
+          <span class="chan"><b>·</b> Atende no WhatsApp</span>
+          <span class="chan"><b>·</b> Vende no Instagram</span>
+          <span class="chan"><b>·</b> Faz seus sites</span>
+          <span class="chan"><b>·</b> Cria suas imagens</span>
+          <span class="chan"><b>·</b> Edita seus videos</span>
+          <span class="chan"><b>·</b> Opera o seu CRM</span>
+        </div>
+        <div class="actions hero-actions reveal d5">
+          <a class="btn btn-primary magnetic" href="#oferta">Instalar minha Primeira Naia <span class="arrow">↗</span></a>
+          <a class="btn btn-ghost-light magnetic" href="#instalar">Ver o que ela faz</a>
+        </div>
+      </div>
+      <div class="hero-collage reveal d3">
+        <div class="hc-main tilt">
+          <img src="https://bio.denderson.ai/assets/squad-hero.jpg" alt="Primeira Naia, o agente de IA que opera a sua empresa" width="1000" height="666" decoding="async" fetchpriority="high">
+        </div>
+        <div class="hc-cut hc-cut-a tilt">
+          <img src="https://bio.denderson.ai/assets/naia-hero.jpg" alt="Naia, o agente central" width="800" height="1200" loading="lazy" decoding="async">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>Primeira Naia · Agente de IA · Atende · Vende · Cria · 24/7</span>
+      <span>Primeira Naia · Agente de IA · Atende · Vende · Cria · 24/7</span>
+    </div>
+  </div>
+
+  <!-- II - A PROMESSA (bento) -->
+  <section id="instalar">
+    <div class="container">
+      <div class="plat-intro">
+        <div class="reveal">
+          <p class="eyebrow">Nao e um chatbot</p>
+          <h2 class="display" style="margin:18px 0 0;">Nao e um chatbot de pergunta e resposta. E um <span class="serif">agente de verdade</span> que trabalha por voce<span class="dot">.</span></h2>
+        </div>
+        <div class="reveal d2">
+          <p class="lead">A sua Primeira Naia ja nasce treinada com o mesmo treinamento que o meu proprio time usa. Ela vem com tres subagentes diretos: a Juliana faz sites, imagens e edicao de video, o Paulo cuida de codigo e automacoes e o Denderson gerencia o seu trafego pago. Voce so precisa dar as informacoes da sua empresa e ela comeca a fazer, ate coisas que voce ainda nem sabia que precisava.</p>
+          <div class="actions" style="margin-top:24px;">
+            <a class="btn btn-primary magnetic" href="#oferta">Quero instalar a minha <span class="arrow">↗</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="bento stagger">
+        <div class="card b1"><div class="crow"><span class="cnum">Subagente 01</span><span class="ctag">Juliana</span></div><h4>Sites, imagens e edicao de video</h4><p>Faz site, landing page, apresentacoes e imagens, e edita o seu video com legenda e infografico animado. A propria apresentacao da aula foi feita por ela.</p><span class="arr">↗</span></div>
+        <div class="card b2"><div class="crow"><span class="cnum">Subagente 02</span><span class="ctag">Paulo</span></div><h4>Codigo e automacoes</h4><p>Cuida do codigo e das automacoes da sua operacao e conecta no CRM que voce usa pra operar por voce.</p><span class="arr">↗</span></div>
+        <div class="card bfull"><div class="crow"><span class="cnum">Subagente 03</span><span class="ctag">Denderson</span></div><h4>Trafego pago</h4><p>Conectado ao MCP da Meta e do Google, cria as campanhas de trafego pago dentro da sua conta de verdade, nao entrega so relatorio.</p><span class="arr">↗</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- III - O AGENTE (escura) -->
+  <section id="equipe" class="section-dark fx">
+    <canvas class="fx-canvas" data-fx="grid" aria-hidden="true"></canvas>
+    <div class="container">
+      <div class="duo" style="margin-bottom:40px;">
+        <div class="reveal">
+          <p class="eyebrow">Nao e um agente cru do zero</p>
+          <h2 class="display" style="margin:16px 0 14px;">A sua <span class="serif">Naia</span> chega treinada, com um time de subagentes ja instalado<span class="dot">.</span></h2>
+          <p class="lead muted">O agente que voce baixa de qualquer tutorial nasce zerado, sem nenhuma informacao. A sua Primeira Naia nasce ja treinada e capacitada pra atender, qualificar, fazer site e agendar, com o mesmo treinamento do agente que roda a minha operacao. Ela vem com tres subagentes diretos, a Juliana, o Paulo e o Denderson, ja instalados e prontos pra operar quando te der bom dia.</p>
+        </div>
+        <div class="team-naia reveal d2">
+          <img src="https://bio.denderson.ai/assets/team/perfil-naia.jpg" alt="Naia">
+          <div>
+            <p class="eyebrow">Agente central</p>
+            <h3 class="sub" style="margin:12px 0 10px;">Naia<span class="dot">.</span></h3>
+            <p class="lead muted" style="font-size:16px;">Orquestra o trabalho. Recebe o seu pedido pelo Telegram, aciona os subagentes certos e devolve a entrega pronta. Tem o proprio banco de dados e nao esquece nada do que voce fala.</p>
+          </div>
+        </div>
+      </div>
+      <div class="team-grid trio stagger">
+        <div class="team-card"><span class="tc-tag">Subagente 01</span><img src="https://bio.denderson.ai/assets/team/perfil-juliana.jpg" alt="Juliana"><b>Juliana</b><span>Sites, imagens e edicao de video</span></div>
+        <div class="team-card"><span class="tc-tag">Subagente 02</span><img src="https://bio.denderson.ai/assets/team/perfil-paulo.jpg" alt="Paulo"><b>Paulo</b><span>Codigo e automacoes</span></div>
+        <div class="team-card"><span class="tc-tag">Subagente 03</span><img src="https://bio.denderson.ai/assets/team/perfil-clone-denderson.jpg" alt="Denderson"><b>Denderson</b><span>Trafego pago</span></div>
+      </div>
+      <div class="team-plus reveal">
+        <span class="tp-num">3</span>
+        <p class="tp-txt"><b>subagentes diretos, ja instalados na sua Primeira Naia:</b> a Juliana faz sites, imagens e edicao de video, o Paulo cuida de codigo e automacoes e o Denderson gerencia o seu trafego pago. E mais varias habilidades ja instaladas pra atender, vender e montar propostas, que voce pode ampliar depois, de graca.</p>
+        <div class="tp-chips">
+          <span>Sites</span><span>Imagens</span><span>Edicao de video</span><span>Codigo</span><span>Automacoes</span><span>Trafego pago</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- IV - NUCLEO: capta, conversa, converte -->
+  <section id="nucleo">
+    <div class="container">
+      <div class="prow">
+        <div class="prow-txt reveal">
+          <p class="eyebrow">Do primeiro oi ao pagamento</p>
+          <h2 class="display" style="font-size:clamp(28px,3.4vw,50px);">Ela <span class="serif">atende</span>, <span class="serif">qualifica</span> e manda o link de pagamento<span class="dot">.</span></h2>
+          <p class="biglead">Voce nao recebe so uma ferramenta. E um agente instalado e rodando na sua empresa que <b>atende</b>, <b>qualifica o lead</b> e <b>manda o link de pagamento com tecnica de vendas ja treinada</b>. Enquanto voce dorme, ela responde direct e WhatsApp, prepara roteiros do dia seguinte e monta propostas pros seus clientes.</p>
+          <ul class="vlist">
+            <li><span class="mk" style="color:var(--coral)">✓</span> <b>Atende:</b> responde o lead em segundos, 24 horas por dia, nos seus canais.</li>
+            <li><span class="mk" style="color:var(--coral)">✓</span> <b>Qualifica:</b> conduz a conversa com tecnica de vendas ja treinada por mim.</li>
+            <li><span class="mk" style="color:var(--coral)">✓</span> <b>Converte:</b> agenda a call ou manda o link de pagamento na hora certa.</li>
+            <li><span class="mk" style="color:var(--coral)">✓</span> <b>Opera o CRM:</b> conecta no CRM que voce usa e cuida do funil por voce.</li>
+          </ul>
+          <div class="pillstrip">
+            <span class="pill"><b>·</b> Resposta em segundos</span>
+            <span class="pill"><b>·</b> Nunca dorme</span>
+            <span class="pill"><b>·</b> Tecnica de vendas treinada</span>
+          </div>
+          <div class="actions" style="margin-top:26px;">
+            <a class="btn btn-primary magnetic" href="#oferta">Quero minha Primeira Naia <span class="arrow">↗</span></a>
+          </div>
+        </div>
+        <div class="prow-img reveal d2">
+          <div class="stage-coral">
+            <div class="nucleo-figure tilt">
+              <img src="https://bio.denderson.ai/assets/nucleo/02-team-v2.jpg" alt="Agente em operacao, atende, qualifica e converte" loading="lazy" decoding="async">
+              <div class="ntag"><b>Agente em operacao.</b> Atende, qualifica, manda o link de pagamento e cuida do funil por voce, 24 horas por dia.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="prow rev" style="margin-top:72px;">
+        <div class="prow-txt reveal">
+          <p class="eyebrow">Uma pessoa virtual que nao esquece</p>
+          <h2 class="display" style="font-size:clamp(26px,3vw,46px);">Ela orquestra, <span class="serif">lembra de tudo</span> e nunca para de trabalhar<span class="dot">.</span></h2>
+          <p class="biglead">A Naia tem o proprio banco de dados: ela salva as suas conversas e lembra de tudo da sua empresa. Voce conversa com ela pelo Telegram e ela distribui o trabalho pros subagentes. Quando voce vai dormir, deixa uma tarefa rodando e o time trabalha na madrugada, gastando os tokens enquanto voce descansa.</p>
+          <div class="pillstrip">
+            <span class="pill"><b>·</b> Memoria propria</span>
+            <span class="pill"><b>·</b> Fala por Telegram</span>
+            <span class="pill"><b>·</b> Trabalha de madrugada</span>
+            <span class="pill"><b>·</b> Nunca esquece</span>
+          </div>
+        </div>
+        <div class="prow-img reveal d2">
+          <div class="stage-mustard">
+            <div class="nucleo-figure tilt">
+              <img src="https://bio.denderson.ai/assets/nucleo/03-naia-v2.jpg" alt="Naia, orquestradora com memoria propria" loading="lazy" decoding="async">
+              <div class="ntag"><b>Naia · orquestradora.</b> Recebe o pedido, distribui pros subagentes e devolve pronto. Banco de dados proprio, memoria que nao esquece.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="prow" style="margin-top:72px;">
+        <div class="prow-txt reveal">
+          <p class="eyebrow">Criacao sem depender de ninguem</p>
+          <h2 class="display" style="font-size:clamp(26px,3vw,46px);">Ela faz o <span class="serif">site</span>, o criativo e edita o <span class="serif">video</span> pra voce<span class="dot">.</span></h2>
+          <p class="biglead">Um site que um web designer bom leva de tres a sete dias, o agente faz em minutos. Uma proposta comercial de um a dois dias sai em dez minutos. Voce grava o video no celular, manda pra ela e ela edita, coloca legenda e infografico animado e devolve pronto pra postar.</p>
+          <div class="pillstrip">
+            <span class="pill"><b>·</b> Sites &amp; landing pages</span>
+            <span class="pill"><b>·</b> Imagens &amp; carrosseis</span>
+            <span class="pill"><b>·</b> Edicao de video</span>
+            <span class="pill"><b>·</b> Propostas &amp; apresentacoes</span>
+          </div>
+          <div class="actions" style="margin-top:26px;">
+            <a class="btn btn-primary magnetic" href="#oferta">Quero criar sem depender de ninguem <span class="arrow">↗</span></a>
+          </div>
+        </div>
+        <div class="prow-img reveal d2">
+          <div class="imgframe frame-rot tilt">
+            <img src="https://bio.denderson.ai/assets/criacao.jpg" alt="Agente criando sites, imagens e videos" width="1000" height="666" loading="lazy" decoding="async">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- V - QUANTO CUSTARIA CONTRATAR ISSO -->
+  <section id="ia-vs-humano" class="section-bone">
+    <div class="container">
+      <div class="duo" style="margin-bottom:40px;">
+        <div class="reveal">
+          <p class="eyebrow">Quanto isso custaria no mundo real</p>
+          <h2 class="display" style="margin:16px 0 0;">Cada funcao que voce pagaria caro, a sua Naia <span class="serif">ja faz</span> incluida<span class="dot">.</span></h2>
+        </div>
+        <div class="reveal d2">
+          <p class="lead muted">Esses sao os valores que se paga no mercado por cada uma dessas funcoes. A sua Primeira Naia entrega tudo isso instalada no seu servidor. Depois que instala, voce nao paga mensalidade pra ninguem. E se voce presta servico, pode vender essas entregas pros seus clientes.</p>
+        </div>
+      </div>
+
+      <div class="role-grid reveal">
+        <div class="rolecard">
+          <div class="rhead"><span class="rfunc">Atendimento · SDR</span><span class="rsave">SDR humano: R$ 2.500 a 3.500/mes</span></div>
+          <div class="rvs">
+            <div class="side human"><div class="slab">Contratar</div><div class="who">SDR de vendas</div><div class="cost">R$ 3.500<small> /mes</small></div></div>
+            <div class="side ai"><div class="slab">Sua Naia</div><div class="who"><img src="https://bio.denderson.ai/assets/team/perfil-naia.jpg" alt="Naia">Atende &amp; vende</div><div class="cost">Incluso<small> · 0 extra</small></div></div>
+          </div>
+          <p class="radv"><b>24/7 e resposta instantanea.</b> Atende e qualifica seus leads nos seus canais ao mesmo tempo, com tecnica de vendas ja treinada. Um SDR de plataforma ainda cobra por token a cada mensagem.</p>
+        </div>
+        <div class="rolecard">
+          <div class="rhead"><span class="rfunc">Web design · Landing page</span><span class="rsave">landing profissional: a partir de R$ 3.000</span></div>
+          <div class="rvs">
+            <div class="side human"><div class="slab">Contratar</div><div class="who">Landing profissional</div><div class="cost">R$ 3.000<small> /pagina</small></div></div>
+            <div class="side ai"><div class="slab">Sua Naia · Juliana</div><div class="who"><img src="https://bio.denderson.ai/assets/team/perfil-juliana.jpg" alt="Juliana">Faz site</div><div class="cost">Incluso<small> · 0 extra</small></div></div>
+          </div>
+          <p class="radv"><b>Fica pronto em minutos.</b> Um bom web designer leva dias e cobra caro por pagina. O agente entrega o site com a sua cara, quando voce quiser, e voce ainda pode vender esse servico.</p>
+        </div>
+        <div class="rolecard">
+          <div class="rhead"><span class="rfunc">Edicao de video</span><span class="rsave">editor bom: 5 mil/mes ou 150 por reels</span></div>
+          <div class="rvs">
+            <div class="side human"><div class="slab">Contratar</div><div class="who">Editor de video</div><div class="cost">R$ 5.000<small> /mes</small></div></div>
+            <div class="side ai"><div class="slab">Sua Naia · Juliana</div><div class="who"><img src="https://bio.denderson.ai/assets/team/perfil-juliana.jpg" alt="Juliana">Edita video</div><div class="cost">Incluso<small> · 0 extra</small></div></div>
+          </div>
+          <p class="radv"><b>Sem esperar a boa vontade do editor.</b> Voce grava, manda pra ela e ela edita com legenda e infografico animado. Um reels em minutos, na hora que voce quer.</p>
+        </div>
+        <div class="rolecard">
+          <div class="rhead"><span class="rfunc">Copy · Copywriter</span><span class="rsave">copy de lancamento: R$ 10 a 20 mil/mes</span></div>
+          <div class="rvs">
+            <div class="side human"><div class="slab">Contratar</div><div class="who">Copywriter</div><div class="cost">R$ 15.000<small> /mes</small></div></div>
+            <div class="side ai"><div class="slab">Sua Naia</div><div class="who"><img src="https://bio.denderson.ai/assets/team/perfil-naia.jpg" alt="Naia">Roteiro &amp; copy</div><div class="cost">Incluso<small> · 0 extra</small></div></div>
+          </div>
+          <p class="radv"><b>Um dos cargos mais caros do mercado.</b> Pagina de vendas, roteiro de VSL e de reels na hora. Ela escreve o roteiro em minutos e voce so grava.</p>
+        </div>
+        <div class="rolecard">
+          <div class="rhead"><span class="rfunc">Trafego · Gestor de midia</span><span class="rsave">cria a campanha, nao so relatorio</span></div>
+          <div class="rvs">
+            <div class="side human"><div class="slab">Contratar</div><div class="who">Gestor de trafego</div><div class="cost">R$ 3.000<small> /mes</small></div></div>
+            <div class="side ai"><div class="slab">Sua Naia · Denderson</div><div class="who"><img src="https://bio.denderson.ai/assets/team/perfil-clone-denderson.jpg" alt="Denderson">Trafego pago</div><div class="cost">Incluso<small> · 0 extra</small></div></div>
+          </div>
+          <p class="radv"><b>Entra na conta e cria a campanha.</b> Conectada ao MCP da Meta e do Google, ela cria a campanha de trafego dentro da sua conta de verdade, nao entrega so um relatorio.</p>
+        </div>
+        <div class="rolecard">
+          <div class="rhead"><span class="rfunc">Plataformas · Assinaturas</span><span class="rsave">a versao propria no seu servidor</span></div>
+          <div class="rvs">
+            <div class="side human"><div class="slab">Hoje</div><div class="who">Varias assinaturas</div><div class="cost">Todo mes<small> · em dolar</small></div></div>
+            <div class="side ai"><div class="slab">Sua Naia · Paulo</div><div class="who"><img src="https://bio.denderson.ai/assets/team/perfil-paulo.jpg" alt="Paulo">Codigo e automacoes</div><div class="cost">Incluso<small> · 0 extra</small></div></div>
+          </div>
+          <p class="radv"><b>Sua propria versao das ferramentas.</b> No lugar de assinar varias plataformas caras que travam e te deixam refem, boa parte das funcoes passa a rodar no seu proprio servidor.</p>
+        </div>
+      </div>
+
+      <div class="totalbar reveal">
+        <div class="tnum"><span class="strike">R$ 1.197</span> &nbsp;→&nbsp; <span class="now">R$ 297</span></div>
+        <div class="tcap">Fora dessa aula, a mesma instalacao sai por <b style="color:#fff;">R$ 1.197</b>, o preco da anuidade da comunidade. Aqui, so nesta aula, a sua Primeira Naia instalada no seu servidor sai por <b style="color:#fff;">R$ 297 a vista</b>, ou 12x de menos de R$ 30 no cartao. Depois que instala, <b style="color:#fff;">nao paga mensalidade pra ninguem</b>.</div>
+      </div>
+
+      <div class="perkrow stagger">
+        <div class="perk"><h4>24/7 sem pausa</h4><p>Se o lead se cadastra as 3 da manha, ela ja esta conversando com ele no WhatsApp.</p></div>
+        <div class="perk"><h4>No seu servidor</h4><p>O agente roda no seu servidor privado. Os dados sao seus e ficam isolados, nao numa plataforma de terceiro.</p></div>
+        <div class="perk"><h4>Sem mensalidade</h4><p>Depois de instalar, nao paga assinatura por token pra ninguem. So o custo do seu servidor.</p></div>
+        <div class="perk"><h4>Pode revender</h4><p>Presta servico ou tem agencia? Pode vender as entregas do agente pros seus clientes.</p></div>
+      </div>
+
+      <div class="actions reveal" style="margin-top:32px;">
+        <a class="btn btn-primary magnetic" href="#oferta">Instalar por R$ 297 <span class="arrow">↗</span></a>
+        <a class="btn btn-ghost magnetic" href="#oferta">Ver a oferta completa</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- VI - O SERVIDOR PROPRIO (fileira) -->
+  <section id="crm" class="row-sec">
+    <div class="container">
+      <div class="prow">
+        <div class="prow-img reveal">
+          <div class="imgframe frame-blob tilt">
+            <img src="https://bio.denderson.ai/assets/crm.jpg" alt="O agente roda no seu proprio servidor" width="1000" height="666" loading="lazy" decoding="async">
+          </div>
+        </div>
+        <div class="prow-txt reveal d2">
+          <p class="eyebrow">Terreno proprio, nao alugado</p>
+          <h2 class="display">O agente roda no <span class="serif">seu servidor</span>, com os seus <span class="serif">dados</span><span class="dot">.</span></h2>
+          <p class="lead">Numa plataforma de terceiro voce fica refem: paga assinatura por token, ela trava e os seus dados ficam no servidor dela. No seu servidor proprio, voce e dono da arquitetura, pode rotacionar os melhores modelos e a inteligencia fica salva na memoria do seu agente. Um servidor bom comeca a partir de R$ 50 por mes.</p>
+          <ul class="vlist">
+            <li><span class="mk">·</span> Servidor bom a partir de R$ 50/mes, o top de linha por volta de R$ 120.</li>
+            <li><span class="mk">·</span> Dados isolados no seu servidor privado, atrelado a sua conta.</li>
+            <li><span class="mk">·</span> Sem depender da manutencao nem do suporte de uma plataforma.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VII - INSTALADOR PARA LEIGOS (escura) -->
+  <section id="automacao" class="row-sec section-dark fx">
+    <canvas class="fx-canvas" data-fx="waves" aria-hidden="true"></canvas>
+    <div class="container">
+      <div class="prow rev">
+        <div class="prow-txt reveal">
+          <p class="eyebrow">Instalador para leigos</p>
+          <h2 class="display">Voce <span class="serif">copia e cola</span> um comando e o agente <span class="serif">nasce</span><span class="dot">.</span></h2>
+          <p class="lead">No caminho tradicional do tutorial de YouTube voce enfrenta um fluxo de 45 telas numa tela preta cheia de letrinha miuda. Aqui nao tem isso. Voce copia e cola o instalador que eu te entrego pronto, da control C e control V, e em alguns minutos o seu agente acorda e diz bom dia, pronto pra trabalhar. Nao precisa saber programar.</p>
+          <ul class="vlist">
+            <li><span class="mk" style="color:var(--coral)">✓</span> Copia e cola o prompt do instalador, sem tela preta complicada.</li>
+            <li><span class="mk" style="color:var(--coral)">✓</span> Em alguns minutos o agente acorda ja treinado.</li>
+            <li><span class="mk" style="color:var(--coral)">✓</span> Nao precisa entender de programacao.</li>
+          </ul>
+          <div class="actions" style="margin-top:24px;">
+            <a class="btn btn-primary magnetic" href="#oferta">Quero o instalador pronto <span class="arrow">↗</span></a>
+          </div>
+        </div>
+        <div class="prow-img reveal d2">
+          <div class="imgframe frame-rot tilt">
+            <img src="https://bio.denderson.ai/assets/automacao.jpg" alt="Instalador para leigos, copia e cola" width="1000" height="666" loading="lazy" decoding="async">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VIII - BONUS WHATSAPP (fileira) -->
+  <section id="webinar" class="row-sec section-dark fx">
+    <canvas class="fx-canvas" data-fx="waves" aria-hidden="true"></canvas>
+    <div class="container">
+      <div class="prow">
+        <div class="prow-img reveal">
+          <div class="imgframe frame-coral tilt">
+            <img src="https://bio.denderson.ai/assets/webinar.jpg" alt="Bonus, plataforma para conectar o WhatsApp na Naia" width="1000" height="666" loading="lazy" decoding="async">
+          </div>
+        </div>
+        <div class="prow-txt reveal d2">
+          <p class="eyebrow">Bonus incluso</p>
+          <h2 class="display">Bonus: conecte o <span class="serif">WhatsApp</span> na sua Naia<span class="dot">.</span></h2>
+          <p class="lead">Voce ainda recebe de bonus uma plataforma open source que fica no mesmo servidor do seu agente. Voce gera um QR code, escaneia com o seu WhatsApp e a partir dai a Naia se conecta pra atender os seus clientes, gerenciar o grupo e ate dar uma faxina na sua lista de contatos. O codigo e seu.</p>
+          <ul class="vlist">
+            <li><span class="mk" style="color:var(--coral)">✓</span> QR code pra conectar o seu WhatsApp em minutos.</li>
+            <li><span class="mk" style="color:var(--coral)">✓</span> A Naia atende os clientes e gerencia grupos por voce.</li>
+            <li><span class="mk" style="color:var(--coral)">✓</span> Codigo open source, no seu servidor, e seu.</li>
+          </ul>
+          <div class="actions" style="margin-top:24px;">
+            <a class="btn btn-primary magnetic" href="#oferta">Quero o bonus junto <span class="arrow">↗</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- IX - AGENDA (fileira) -->
+  <section id="erp" class="row-sec section-bone">
+    <div class="container">
+      <div class="prow rev">
+        <div class="prow-txt reveal">
+          <p class="eyebrow">Ela cuida da sua rotina</p>
+          <h2 class="display">Ela controla a sua <span class="serif">agenda</span> e resolve tarefas do dia a dia<span class="dot">.</span></h2>
+          <p class="lead">Conectada ao seu Google Agenda, a Naia faz todo o agendamento e controla o seu calendario, voce nao precisa mais de secretaria. Ela agenda direto na sua agenda, prepara os roteiros do proximo dia e resolve pequenas tarefas do dia a dia enquanto voce toca o resto.</p>
+          <ul class="vlist">
+            <li><span class="mk" style="color:var(--coral)">✓</span> <b>Agenda:</b> conecta no Google Agenda e cuida do seu calendario.</li>
+            <li><span class="mk" style="color:var(--coral)">✓</span> <b>Roteiros:</b> prepara o material do proximo dia enquanto voce descansa.</li>
+            <li><span class="mk" style="color:var(--coral)">✓</span> <b>Propostas:</b> monta a proposta pro seu cliente em minutos.</li>
+            <li><span class="mk" style="color:var(--coral)">✓</span> <b>Bastidor:</b> ajuda com automacoes e com o CRM que voce usa.</li>
+          </ul>
+          <div class="actions" style="margin-top:24px;">
+            <a class="btn btn-primary magnetic" href="#oferta">Quero ela na minha rotina <span class="arrow">↗</span></a>
+          </div>
+        </div>
+        <div class="prow-img reveal d2">
+          <div class="imgframe frame-blob tilt">
+            <img src="https://bio.denderson.ai/assets/erp.jpg" alt="A Naia controla a sua agenda e a rotina" width="1000" height="666" loading="lazy" decoding="async">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- X - O QUE VOCE RECEBE HOJE (fileira) -->
+  <section id="esteira" class="row-sec">
+    <div class="container">
+      <div class="prow rev">
+        <div class="prow-txt reveal">
+          <p class="eyebrow">Tudo que voce recebe hoje</p>
+          <h2 class="display">O pacote completo <span class="serif">pra instalar</span> e usar<span class="dot">.</span></h2>
+          <p class="lead">Ao entrar voce recebe o acesso na hora, na propria area de membros, com tudo que precisa pra colocar a sua Primeira Naia pra rodar ainda hoje. Nao e um curso: e um manual direto ao ponto, porque e so copiar e colar.</p>
+          <div class="badge-row">
+            <span class="badge">Manual em video · 6 a 7 aulas curtas</span>
+            <span class="badge">Manual visual passo a passo</span>
+            <span class="badge">Instalador para leigos · copia e cola</span>
+            <span class="badge">Treinamento de seguranca e isolamento</span>
+            <span class="badge">Treinamento de infraestrutura</span>
+            <span class="badge">Manual de como conversar com o agente</span>
+            <span class="badge">Bonus: plataforma pra conectar o WhatsApp</span>
+            <span class="badge">Grupo de suporte na instalacao</span>
+          </div>
+          <p class="lead muted" style="font-size:15px;margin-top:16px;">Acesso a plataforma por um ano, e sempre que algo muda no agente ou no instalador eu atualizo pra quem ainda nao instalou. As aulas sao curtas: a maior tem 15 minutos, a maioria de 5 a 7.</p>
+          <div class="actions" style="margin-top:24px;">
+            <a class="btn btn-primary magnetic" href="#oferta">Quero o pacote completo <span class="arrow">↗</span></a>
+          </div>
+        </div>
+        <div class="prow-img reveal d2">
+          <div class="app-stage">
+            <div class="app-back" aria-hidden="true"></div>
+            <div class="app-frame tilt">
+              <img src="https://bio.denderson.ai/assets/app.jpg" alt="Area de membros com o material pra instalar a sua Primeira Naia" width="600" height="900" loading="lazy" decoding="async">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- XI - A CONTA -->
+  <section id="custo" class="section-bone">
+    <div class="container">
+      <div class="duo">
+        <div class="reveal">
+          <p class="eyebrow">A escolha e sua</p>
+          <h2 class="display" style="margin:16px 0 14px;">Voce tem <span class="serif">duas opcoes</span> a partir de agora<span class="dot">.</span></h2>
+          <p class="lead muted">Fechar essa pagina e continuar no braco, tentando instalar sozinho pelo tutorial de YouTube que nunca funciona direito. Ou instalar a sua Primeira Naia hoje por R$ 297 e ganhar o funcionario mais competente que voce ja teve, que ainda pode virar renda extra revendendo pra outras empresas.</p>
+        </div>
+        <div class="vs reveal d2">
+          <div class="vs-col bad">
+            <div class="vlabel">Opcao A · No braco</div>
+            <h4>Continuar sozinho</h4>
+            <div class="vs-price">Seu tempo<small> perdido</small></div>
+            <ul class="vlist">
+              <li><span class="mk x">+</span> Tutorial de YouTube que trava</li>
+              <li><span class="mk x">+</span> Fluxo de 45 telas na tela preta</li>
+              <li><span class="mk x">+</span> Agente cru, sem treinamento</li>
+              <li><span class="mk x">+</span> Depois paga R$ 1.197 pela mesma instalacao</li>
+            </ul>
+          </div>
+          <div class="vs-mid">vs</div>
+          <div class="vs-col good">
+            <div class="vlabel">Opcao B · Primeira Naia</div>
+            <h4>Instalar hoje</h4>
+            <div class="vs-price" data-prefix="R$ ">R$ 297<small> a vista</small></div>
+            <p class="vs-breakdown">Ou 12x de menos de R$ 30 no cartao. Instala nas proximas horas e ja poe pra rodar. Depois, sem mensalidade.</p>
+            <ul class="vlist">
+              <li><span class="mk">✓</span> Agente ja treinado, no seu servidor</li>
+              <li><span class="mk">✓</span> Manual, instalador e bonus do WhatsApp</li>
+              <li><span class="mk">✓</span> Garantia de 7 dias e grupo de suporte</li>
+              <li><span class="mk">✓</span> Pode revender a instalacao pra outras empresas</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="save-strip reveal">
+        <b>Fora dessa aula, a mesma instalacao sai por <span class="serif" style="color:var(--coral);">R$ 1.197</span>, a anuidade da comunidade.</b>
+        <a class="btn btn-primary btn-sm magnetic" href="#oferta">Instalar por R$ 297 <span class="arrow">↗</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- XII - PARA QUEM E -->
+  <section id="perfis">
+    <div class="container">
+      <div class="duo" style="margin-bottom:40px;">
+        <div class="reveal">
+          <p class="eyebrow">Serve pra voce</p>
+          <h2 class="display" style="margin:16px 0 0;">Pra quem <span class="serif">vende</span> um produto ou um servico<span class="dot">.</span></h2>
+        </div>
+      </div>
+      <div class="perfis-grid stagger">
+        <div class="mstep">
+          <div class="mhead"><span class="mn">I.</span><h4>Empreendedor &amp; empresario</h4></div>
+          <p>A maioria de quem instala. Cobre as operacoes mais basicas de qualquer empresa no digital, mesmo as que voce ainda nem roda.</p>
+          <ul><li>Atendimento e vendas no automatico</li><li>Sites, criativos e video no mesmo dia</li><li>Bastidor cuidando do CRM e do trafego</li></ul>
+        </div>
+        <div class="mstep">
+          <div class="mhead"><span class="mn">II.</span><h4>Prestador de servico &amp; agencia</h4></div>
+          <p>Tem clientes que voce atende? Pode vender as entregas do agente e cobrar por elas, transformando em faturamento.</p>
+          <ul><li>Vende landing page, criativo e video</li><li>Oferece o servico de SDR de IA</li><li>Instala a Naia pros seus clientes</li></ul>
+        </div>
+        <div class="mstep">
+          <div class="mhead"><span class="mn">III.</span><h4>CLT que quer renda extra</h4></div>
+          <p>Da pra instalar a Naia pros outros nas horas vagas e fazer uma renda extra. Quando passar do que ganha hoje, voce escolhe.</p>
+          <ul><li>Instala pra outras empresas</li><li>Renda extra nas horas vagas</li><li>Sucesso de instalacao proximo de 100%</li></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- XIII - OFERTA -->
+  <section id="oferta" class="section-dark fx">
+    <canvas class="fx-canvas" data-fx="orbs" aria-hidden="true"></canvas>
+    <div class="container">
+      <div class="offer reveal">
+        <div class="left">
+          <p class="eyebrow">Oferta exclusiva desta aula</p>
+          <h3 class="sub" style="margin:16px 0 14px;">Sua <span class="serif">Primeira Naia</span> instalada, pronta pra usar<span class="dot">.</span></h3>
+          <p class="lead muted" style="font-size:16px;">Um agente de IA ja treinado, instalado no seu proprio servidor, que atende e vende, faz sites, cria imagens, edita video e opera o seu CRM. Voce recebe o acesso na hora, copia e cola o instalador e coloca pra rodar ainda hoje. Depois de instalar, nao paga mensalidade pra ninguem.</p>
+          <ul class="incl">
+            <li><span class="mk">✓</span> Agente treinado com 3 subagentes</li>
+            <li><span class="mk">✓</span> Juliana: sites, imagens e edicao de video</li>
+            <li><span class="mk">✓</span> Paulo: codigo e automacoes</li>
+            <li><span class="mk">✓</span> Denderson: trafego pago</li>
+            <li><span class="mk">✓</span> Manual em video e manual visual</li>
+            <li><span class="mk">✓</span> Instalador para leigos, copia e cola</li>
+            <li><span class="mk">✓</span> Treinamento de seguranca e infra</li>
+            <li><span class="mk">✓</span> Bonus: WhatsApp conectado na Naia</li>
+            <li><span class="mk">✓</span> Grupo de suporte na instalacao</li>
+            <li><span class="mk">✓</span> Acesso a plataforma por 1 ano</li>
+          </ul>
+        </div>
+        <div class="right">
+          <div class="stamp" aria-hidden="true">★</div>
+          <div class="coord" style="margin-bottom:10px;">Nucleo Avalanche de Inteligencia Artificial</div>
+          <p class="anchor-old">Fora desta aula: R$ 1.197 (anuidade)</p>
+          <p class="pricelab">Somente nesta aula</p>
+          <div class="price">R$ 297 <small>a vista</small></div>
+          <p class="price-sub">ou 12x de menos de R$ 30 no cartao</p>
+          <a class="btn btn-coral magnetic" href="https://pay.hub.la/1zaQiO7CMi7g3GovElF5" target="_blank" rel="noopener">Instalar minha Primeira Naia <span class="arrow">↗</span></a>
+          <ul class="offer-reassure">
+            <li>Garantia de 7 dias</li>
+            <li>Acesso liberado na hora, no seu WhatsApp</li>
+            <li>Instala nas proximas horas e ja poe pra rodar</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- XIV - CTA FINAL -->
+  <section id="agendar">
+    <div class="container">
+      <div class="finalcta reveal">
+        <p class="eyebrow">Ultima chamada</p>
+        <h2 class="display">Pare de tentar no braco. <span class="serif" style="color:var(--coral)">Instale</span> a sua Naia hoje.</h2>
+        <p class="lead">Cada mes que voce passa sem esse agente e dinheiro escoando pelo ralo. Instala nas proximas horas, poe pra rodar e ganha o funcionario mais competente que voce ja teve. Essa oferta so vale aqui, nesta aula.</p>
+        <div class="actions" style="justify-content:center;">
+          <a class="btn btn-primary magnetic" href="https://pay.hub.la/1zaQiO7CMi7g3GovElF5" target="_blank" rel="noopener">Instalar por R$ 297 <span class="arrow">↗</span></a>
+          <a class="btn btn-ghost magnetic" href="#instalar">Rever o que ela faz</a>
+        </div>
+        <p class="reassure">Acesso liberado na hora · Garantia de 7 dias · Oferta so nesta aula</p>
+      </div>
+    </div>
+  </section>
+
+  </div>
+  <!-- ===== /conteudo bloqueado ===== -->
+
+</main>
+
+<footer class="footer locked-content">
+  <div class="container">
+    <p class="megaword" aria-hidden="true">Naia<span class="dot">.</span></p>
+    <div class="footrow">
+      <span class="live"><span class="pulse"></span> Primeira Naia · o agente de IA que atende, vende e cria pra voce · no seu servidor</span>
+      <span>Nucleo Avalanche de Inteligencia Artificial · MMXXVI</span>
+      <span>Oferta exclusiva desta aula · R$ 297</span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://bio.denderson.ai/js/bg.js" defer></script>
+<script src="https://bio.denderson.ai/js/motion.js" defer></script>
+
+<!-- ===== delay de revelacao (VSL gate): abre o resto da pagina em 9:21 (561s) ===== -->
+<script>
+(function(){
+  "use strict";
+  var UNLOCK_AT = 561;            // 9min21s
+  var STORE_KEY = "pn_v2_unlocked";
+  var revealed = false;
+
+  function reveal(){
+    if (revealed) return;
+    revealed = true;
+    try { document.body.classList.add("pn-unlocked"); } catch(e){}
+    try { localStorage.setItem(STORE_KEY, "1"); } catch(e){}
+    // reprocessa animacoes de entrada do conteudo recem-revelado
+    try { window.dispatchEvent(new Event("resize")); } catch(e){}
+    try { window.dispatchEvent(new Event("scroll")); } catch(e){}
+  }
+
+  // 1) ja destravou antes -> abre na hora
+  try {
+    if (localStorage.getItem(STORE_KEY) === "1") { reveal(); return; }
+  } catch(e){}
+
+  // 2) observa o video interno do vturb-smartplayer (web component demora a montar)
+  var bound = false;
+  function tryBind(){
+    if (bound || revealed) return true;
+    var v = document.querySelector("vturb-smartplayer video");
+    if (!v) return false;
+    bound = true;
+    var onTime = function(){
+      try { if (v.currentTime >= UNLOCK_AT) reveal(); } catch(e){}
+    };
+    v.addEventListener("timeupdate", onTime, { passive: true });
+    // checagem imediata (caso ja esteja alem do ponto, ex. retomada de sessao)
+    onTime();
+    return true;
+  }
+
+  if (tryBind()) return;
+
+  // polling ate o <video> existir
+  var polls = 0;
+  var poll = setInterval(function(){
+    polls++;
+    if (tryBind() || revealed || polls > 1200) { clearInterval(poll); } // ~ ate 2min tentando montar
+  }, 100);
+
+  // reforco: MutationObserver para pegar o momento exato do mount
+  try {
+    var mo = new MutationObserver(function(){
+      if (tryBind() || revealed) { try { mo.disconnect(); } catch(e){} }
+    });
+    mo.observe(document.documentElement, { childList: true, subtree: true });
+  } catch(e){}
+})();
+</script>
+</body>
+</html>
