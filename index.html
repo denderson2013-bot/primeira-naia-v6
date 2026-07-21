@@ -891,8 +891,8 @@ body.pn-unlocked .locked-content{display:block !important;}
 <script>
 (function(){
   "use strict";
-  var UNLOCK_AT = 561;            // 9min21s
-  var STORE_KEY = "pn_v2_unlocked";
+  var UNLOCK_AT = 561;            // 9min21s -> ponto da oferta
+  var STORE_KEY = "pn_v2_unlocked"; // localStorage isolado por origem (cada versao = subdominio proprio)
   var revealed = false;
 
   function reveal(){
@@ -905,40 +905,75 @@ body.pn-unlocked .locked-content{display:block !important;}
     try { window.dispatchEvent(new Event("scroll")); } catch(e){}
   }
 
-  // 1) ja destravou antes -> abre na hora
+  // 1) ja destravou antes -> abre na hora (mesma origem)
   try {
     if (localStorage.getItem(STORE_KEY) === "1") { reveal(); return; }
   } catch(e){}
 
-  // 2) observa o video interno do vturb-smartplayer (web component demora a montar)
-  var bound = false;
-  function tryBind(){
-    if (bound || revealed) return true;
-    var v = document.querySelector("vturb-smartplayer video");
-    if (!v) return false;
-    bound = true;
-    var onTime = function(){
-      try { if (v.currentTime >= UNLOCK_AT) reveal(); } catch(e){}
-    };
-    v.addEventListener("timeupdate", onTime, { passive: true });
-    // checagem imediata (caso ja esteja alem do ponto, ex. retomada de sessao)
-    onTime();
-    return true;
+  // 2) leitor MULTI-ESTRATEGIA de tempo do player.
+  //    O vturb v4 (converteai) NAO expoe um <video> alcancavel por querySelector
+  //    (sem light DOM, sem shadowRoot, HLS/MSE). A fonte confiavel e a API oficial
+  //    window.smartplayer.instances[i], que expoe .instance.currentTime / .video.currentTime.
+  //    Ordem: (a) API smartplayer, (b) shadowRoot, (c) light DOM. Polling continuo.
+  var onListenerBound = false;
+
+  // le o tempo atual do player por qualquer caminho disponivel; retorna numero ou NaN
+  function readTime(){
+    // (a) API oficial converteai
+    try {
+      var sp = window.smartplayer;
+      if (sp && sp.instances && sp.instances.length) {
+        var inst = sp.instances[0];
+        // registra listener oficial uma unica vez (best-effort; nem sempre dispara)
+        if (inst && typeof inst.on === "function" && !onListenerBound) {
+          onListenerBound = true;
+          try {
+            inst.on("timeupdate", function(){
+              var t = readTime();
+              if (!isNaN(t) && t >= UNLOCK_AT) reveal();
+            });
+          } catch(e){}
+        }
+        if (inst) {
+          // o web component interno (.instance) tem o currentTime mais preciso
+          if (inst.instance && typeof inst.instance.currentTime === "number" && inst.instance.currentTime > 0) {
+            return inst.instance.currentTime;
+          }
+          if (inst.video && typeof inst.video.currentTime === "number" && inst.video.currentTime > 0) {
+            return inst.video.currentTime;
+          }
+        }
+      }
+    } catch(e){}
+    // (b) <video> dentro do shadowRoot do web component
+    try {
+      var host = document.querySelector("vturb-smartplayer");
+      if (host && host.shadowRoot) {
+        var sv = host.shadowRoot.querySelector("video");
+        if (sv && typeof sv.currentTime === "number" && sv.currentTime > 0) return sv.currentTime;
+      }
+    } catch(e){}
+    // (c) <video> no light DOM (fallback historico)
+    try {
+      var lv = document.querySelector("vturb-smartplayer video");
+      if (lv && typeof lv.currentTime === "number" && lv.currentTime > 0) return lv.currentTime;
+    } catch(e){}
+    return NaN;
   }
 
-  if (tryBind()) return;
-
-  // polling ate o <video> existir
-  var polls = 0;
+  // polling continuo do tempo real: destrava quando cruzar o ponto da oferta.
+  // NUNCA usa fallback de tempo absoluto (setTimeout) -> so abre com tempo real do player.
   var poll = setInterval(function(){
-    polls++;
-    if (tryBind() || revealed || polls > 1200) { clearInterval(poll); } // ~ ate 2min tentando montar
-  }, 100);
+    if (revealed) { clearInterval(poll); return; }
+    var t = readTime();
+    if (!isNaN(t) && t >= UNLOCK_AT) { reveal(); clearInterval(poll); }
+  }, 250);
 
-  // reforco: MutationObserver para pegar o momento exato do mount
+  // reforco: quando o web component do vturb montar, garante que o listener oficial engate cedo
   try {
     var mo = new MutationObserver(function(){
-      if (tryBind() || revealed) { try { mo.disconnect(); } catch(e){} }
+      if (revealed) { try { mo.disconnect(); } catch(e){} return; }
+      readTime(); // dispara o bind do listener oficial assim que a instancia existir
     });
     mo.observe(document.documentElement, { childList: true, subtree: true });
   } catch(e){}
